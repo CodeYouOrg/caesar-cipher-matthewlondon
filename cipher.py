@@ -1,23 +1,32 @@
-# add your code here
-def get_input():
-    sentence_input = input("Please enter a sentence:")
-    return sentence_input
-
-def cipher(sentence_input):
-    i = 0
-    while i < len(sentence_input):
-        cipher_sentence = []
-        if sentence_input[i].isalpha():
-            cipher_sentence.append(sentence_input[i])
-            i += 1
-        else:
-            cipher_sentence.append("")
-            i += 1
-    return cipher_sentence
+def cipher():
+    cipher_key = 5
     
+    #initialize empty string to return
+    encrypted_cipher = ""
+    
+    #prompt user for input string
+    to_cipher = input("Please enter a senctence: ")
+    
+    #loop over every character in user inputted string
+    for letter in to_cipher:
+        
+        #conditional statement to check if the character is alphabetical
+        if letter.isalpha():
+            if letter.isupper():
+                letter = chr((ord(letter) - ord('A') + cipher_key) % 26 + ord('A'))
+                encrypted_cipher += letter
+            elif letter.islower():
+                letter = chr((ord(letter) - ord('a') + cipher_key) % 26 + ord('a'))
+                encrypted_cipher += letter
+        
+        #doesn't meet initial condition, not an alphabetical character and will be "appended" to string
+        else:
+            encrypted_cipher += letter
+    #final print statement to display encrypted string
+    print("The encrypted sentence is: " + encrypted_cipher)
 
 def main():
-    sentence = get_input()
+        cipher()
 
 
 main()
